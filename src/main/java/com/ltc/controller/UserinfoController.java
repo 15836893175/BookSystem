@@ -31,4 +31,8 @@ public class UserinfoController {
             return null;
         }
     }
+    @RequestMapping("/zhuce")
+    public String zhucePage(){
+        return null;
+    }
 }
