@@ -5,5 +5,14 @@
  <select id="login" parameterType="Userinfo" resultType="Userinfo">
      select * from userinfo where username=#{username} and password=#{password};
  </select>
-
+<select id="finduser" parameterType="Userinfo" resultType="Userinfo">
+    select * from userinfo;
+</select>
+    <select id="finduserbyname" parameterType="Userinfo" resultType="Userinfo">
+        select * from userinfo where username=#{username};
+    </select>
+    <insert id="zhuce" parameterType="Userinfo" keyProperty="ids" useGeneratedKeys="true">
+        insert into userinfo (username,password,phone,email)
+        values(#{username},#{password},#{phone},#{email})
+    </insert>
 </mapper>

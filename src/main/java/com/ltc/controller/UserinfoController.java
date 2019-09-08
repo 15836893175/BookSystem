@@ -5,10 +5,12 @@ import com.ltc.service.UserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserinfoController {
@@ -32,7 +34,30 @@ public class UserinfoController {
         }
     }
     @RequestMapping("/zhuce")
-    public String zhucePage(){
+    @ResponseBody
+    public String zhucePage(Userinfo user){
+        Userinfo finduser = userinfoService.finduserbyname(user);
+        if (finduser == null) {
+            return "yes";
+        }
         return null;
+    }
+    @RequestMapping("/zhuceuser")
+    @ResponseBody
+    public String zhuceuserPage(Userinfo user){
+        int zhuuser = userinfoService.zhuce(user);
+        System.out.println(zhuuser);
+        if (zhuuser == 0) {
+            return null;
+        }else {
+            return "yes";
+        }
+    }
+    @RequestMapping("/finduser")
+    public String finduserPage(Userinfo user, Model model){
+        List<Userinfo> userlist = userinfoService.finduser(user);
+        System.out.println(userlist);
+        model.addAttribute("userlist",userlist);
+        return "systempage";
     }
 }

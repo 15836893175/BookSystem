@@ -21,7 +21,7 @@
                             alert("登录失败，账号或密码错误！")
                         } else {
                             alert("登陆成功！正在跳转...")
-                            window.location.href = ''
+                            window.location.href = '/finduser'
                         }
                     },
                     "text"
@@ -44,26 +44,31 @@
             var zhupass=$("[name='zhupass']").val();
             var zhuphone=$("[name='zhuphone']").val();
             var zhuemail=$("[name='zhuemail']").val();
+            var reg= /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+            var reg2=/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
 
-            $.post(
-                "/zhuce",
-                {
-                    zhuname: zhuname,
-                    zhupass: zhupass,
-                    zhuphone: zhuphone,
-                    zhuemail: zhuemail,
+            if (zhuname.length===0||zhupass.length===0||zhuphone.length===0||zhuemail.length===0&&reg.test(zhuphone)&&reg2.test(zhuemail)){
+                alert("请按要求填写！");
+            }else {
+                    $.post(
+                        "/zhuceuser",
+                        {
+                            username: zhuname,
+                            password: zhupass,
+                            phone: zhuphone,
+                            email: zhuemail
+                        },
+                        function (textzhuce) {
+                            if (textzhuce.length===0) {
+                                alert("注册失败！")
+                            } else {
+                                alert("注册成功！正在跳转...");
+                                window.location.href = '/'
+                            }
+                        },
+                        "text"
+                    )}
 
-                },
-                function (data) {
-                    if (data.length===0) {
-                        alert("注册失败！")
-                    } else {
-                        alert("注册成功！正在跳转...")
-                        window.location.href = '/'
-                    }
-                },
-                "text"
-            )
         }
 
         function onzhuname() {
@@ -72,6 +77,19 @@
                 document.getElementById('error-name').innerHTML="";
             }else {
                 document.getElementById('error-name').innerHTML="账号输入有误";}
+            $.post(
+                "/zhuce",
+                {
+                    username: zhuname
+                },
+                function(textdata){
+                    if (textdata.length===0) {
+                        document.getElementById('error-name').innerHTML="账号已被注册";
+                    }else {
+                        document.getElementById('error-name').innerHTML="";
+                    }
+                    },
+                    "text")
         }
         function onzhupass() {
             var zhupass=$("[name='zhupass']").val();
@@ -90,14 +108,16 @@
         }
         function onzhuphone() {
             var zhuphone=$("[name='zhuphone']").val();
-            if (zhuphone.length!==0){
+            var reg= /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+            if (zhuphone.length!==0&&reg.test(zhuphone)){
                 document.getElementById('error-zhuphone').innerHTML="";
             }else {
                 document.getElementById('error-zhuphone').innerHTML="电话输入有误";}
         }
         function onzhuemail() {
             var zhuemail=$("[name='zhuemail']").val();
-            if (zhuemail.length!==0){
+            var reg=/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+            if (zhuemail.length!==0&&reg.test(zhuemail)){
                 document.getElementById('error-zhuemail').innerHTML="";
             }else {
                 document.getElementById('error-zhuemail').innerHTML="邮箱输入有误";}
