@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1 align="center">用户管理</h1>
+<h3 align="center">欢迎${loginuser.username}!!!</h3>
 <table style="border: 2px blue;margin: auto;" >
   <tr>
     <td>编号</td>
