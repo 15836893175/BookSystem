@@ -13,4 +13,6 @@ public interface UserinfoService {
     Userinfo finduserbyname(Userinfo user);
     //注册方法
     int zhuce(Userinfo user);
+    //修改密码
+    int gaimi(Userinfo user);
 }

@@ -15,4 +15,7 @@
         insert into userinfo (username,password,phone,email)
         values(#{username},#{password},#{phone},#{email})
     </insert>
+    <update id="gaimi" parameterType="Userinfo" keyProperty="ids">
+        update userinfo set password=#{password} where ids=#{ids}
+    </update>
 </mapper>

@@ -46,7 +46,6 @@ public class UserinfoController {
     @ResponseBody
     public String zhuceuserPage(Userinfo user){
         int zhuuser = userinfoService.zhuce(user);
-        System.out.println(zhuuser);
         if (zhuuser == 0) {
             return null;
         }else {
@@ -56,8 +55,16 @@ public class UserinfoController {
     @RequestMapping("/finduser")
     public String finduserPage(Userinfo user, Model model){
         List<Userinfo> userlist = userinfoService.finduser(user);
-        System.out.println(userlist);
         model.addAttribute("userlist",userlist);
         return "systempage";
+    }
+    @RequestMapping("/gaimiurl")
+    public String gaimiPage(Userinfo user){
+        int gaimi = userinfoService.gaimi(user);
+        if (gaimi == 0) {
+            return null;
+        }else {
+            return "yes";
+        }
     }
 }

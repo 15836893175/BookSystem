@@ -32,4 +32,9 @@ public class UserinfoServiceImpl implements UserinfoService{
     public int zhuce(Userinfo user) {
         return userinfoMapper.zhuce(user);
     }
+
+    @Override
+    public int gaimi(Userinfo user) {
+        return userinfoMapper.gaimi(user);
+    }
 }
