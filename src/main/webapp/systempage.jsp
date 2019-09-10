@@ -32,7 +32,6 @@
                     ids:ids
                 },
                 function(passStr){
-                    alert(passStr);
                     if (passStr.length===0){
                         alert("修改失败！请根据要求填写！")
                     }else {

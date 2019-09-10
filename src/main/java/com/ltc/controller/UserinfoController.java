@@ -59,6 +59,7 @@ public class UserinfoController {
         return "systempage";
     }
     @RequestMapping("/gaimiurl")
+    @ResponseBody
     public String gaimiPage(Userinfo user){
         int gaimi = userinfoService.gaimi(user);
         if (gaimi == 0) {
