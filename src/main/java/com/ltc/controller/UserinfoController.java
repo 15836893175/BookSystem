@@ -68,4 +68,23 @@ public class UserinfoController {
             return "yes";
         }
     }
+    @RequestMapping("/deleteuser")
+    public String deletePage(Integer ids){
+        System.out.println("执行删除");
+        int delbyid = userinfoService.delbyid(ids);
+        if (delbyid == 0) {
+            return null;
+        }else {
+            return "forward:/finduser";
+        }
+    }
+    @RequestMapping("/findbyid")
+    public String findidPage(Integer ids){
+        Userinfo findfromuser = userinfoService.findbyid(ids);
+        if (findfromuser == null) {
+            return null;
+        }else {
+            return "yes";
+        }
+    }
 }

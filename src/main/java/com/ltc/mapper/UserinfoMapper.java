@@ -18,4 +18,10 @@ public interface UserinfoMapper {
    int zhuce(Userinfo user);
    //修改密码
    int gaimi(Userinfo user);
+   //删除用户
+   int delbyid(Integer ids);
+   //修改信息
+   int upuserlog(Userinfo user);
+   //ID查询
+   Userinfo findbyid(Integer ids);
 }

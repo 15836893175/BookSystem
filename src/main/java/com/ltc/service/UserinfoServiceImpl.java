@@ -37,4 +37,19 @@ public class UserinfoServiceImpl implements UserinfoService{
     public int gaimi(Userinfo user) {
         return userinfoMapper.gaimi(user);
     }
+
+    @Override
+    public int delbyid(Integer ids) {
+        return userinfoMapper.delbyid(ids);
+    }
+
+    @Override
+    public int upuserlog(Userinfo user) {
+        return userinfoMapper.upuserlog(user);
+    }
+
+    @Override
+    public Userinfo findbyid(Integer ids) {
+        return userinfoMapper.findbyid(ids);
+    }
 }

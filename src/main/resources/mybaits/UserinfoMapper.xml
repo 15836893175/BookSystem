@@ -2,20 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ltc.mapper.UserinfoMapper">
- <select id="login" parameterType="Userinfo" resultType="Userinfo">
+    <!--登录方法-->
+    <select id="login" parameterType="Userinfo" resultType="Userinfo">
      select * from userinfo where username=#{username} and password=#{password};
- </select>
-<select id="finduser" parameterType="Userinfo" resultType="Userinfo">
+    </select>
+    <!--查询所有-->
+    <select id="finduser" parameterType="Userinfo" resultType="Userinfo">
     select * from userinfo;
-</select>
+    </select>
+    <!--注册验证存在性-->
     <select id="finduserbyname" parameterType="Userinfo" resultType="Userinfo">
         select * from userinfo where username=#{username};
     </select>
+    <!--注册方法-->
     <insert id="zhuce" parameterType="Userinfo" keyProperty="ids" useGeneratedKeys="true">
         insert into userinfo (username,password,phone,email)
         values(#{username},#{password},#{phone},#{email})
     </insert>
+    <!--修改密码方法-->
     <update id="gaimi" parameterType="Userinfo" keyProperty="ids">
         update userinfo set password=#{password} where ids=#{ids}
     </update>
+    <!--删除信息-->
+    <delete id="delbyid" parameterType="Integer" >
+        delete from userinfo where ids=#{ids}
+    </delete>
+    <!--修改信息-->
+    <update id="upuserlog" parameterType="Userinfo" keyProperty="ids">
+        update userinfo set username=#{username},password=#{password},phone=#{phone},email=#{email} where ids=#{ids}
+    </update>
+    <!--ID查询-->
+    <select id="findbyid" parameterType="Integer">
+        select (username,phone,email) from userinfo where ids=#{ids}
+    </select>
 </mapper>

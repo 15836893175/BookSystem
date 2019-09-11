@@ -15,6 +15,9 @@
             $("#a2").click(function () {
                 $("#div1").toggle();
             });
+            $(".a3").click(function () {
+                $("#div2").toggle();
+            });
         })
         function gaimijs(){
             var password=$("[name='password']").val();
@@ -134,11 +137,46 @@
       <td>${list.phone}</td>
       <td>${list.email}</td>
       <td>
-        <a href="updateuser.jsp?ids=${list.ids}">编辑</a>
-        <a href="deleteuser?ids=${list.ids}">删除</a>
+        <a href="#" class="a3">编辑</a>
+        <a href="deleteuser?ids=${list.ids}" onClick="return confirm('Warring!!!您确定永久删除该用户吗？');" >删除</a>
       </td>
+        <td>
+        </td>
     </tr>
   </s:forEach>
 </table>
+<div id="div2" style="margin:0 auto;border: 1px blue solid; width: 395px;display: none">
+    <form>
+        <table>
+            <tr>
+                <td>账号：</td>
+                <td>
+                    <input type="text" name="newname" value="${list.username}" onblur=""/>
+                </td>
+                <td><span id="error-newname">*</span></td>
+            </tr>
+            <tr>
+                <td>电话：</td>
+                <td>
+                    <input type="text" name="newphone" value="${list.phone}" onblur=""/>
+                </td>
+                <td><span id="error-newphone">*</span></td>
+            </tr>
+            <tr>
+                <td>邮箱：</td>
+                <td>
+                    <input type="text" name="newemail" value="${list.email}" onblur=""/>
+                </td>
+                <td><span id="error-newemail">*</span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="确认修改" onclick="gaiuser()"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
