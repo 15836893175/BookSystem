@@ -78,6 +78,7 @@
             }else {
                 document.getElementById('error-newpass2').innerHTML="两次密码输入不一致";}
         }
+
     </script>
 </head>
 <body>
@@ -137,7 +138,7 @@
       <td>${list.phone}</td>
       <td>${list.email}</td>
       <td>
-        <a href="#" class="a3">编辑</a>
+        <a href="/findbyid?ids=${list.ids}" class="a3">编辑</a>
         <a href="deleteuser?ids=${list.ids}" onClick="return confirm('Warring!!!您确定永久删除该用户吗？');" >删除</a>
       </td>
         <td>
@@ -151,21 +152,21 @@
             <tr>
                 <td>账号：</td>
                 <td>
-                    <input type="text" name="newname" value="${list.username}" onblur=""/>
+                    <input type="text" name="newname" value="${findfromuser.username}" onblur=""/>
                 </td>
                 <td><span id="error-newname">*</span></td>
             </tr>
             <tr>
                 <td>电话：</td>
                 <td>
-                    <input type="text" name="newphone" value="${list.phone}" onblur=""/>
+                    <input type="text" name="newphone" value="${findfromuser.phone}" onblur=""/>
                 </td>
                 <td><span id="error-newphone">*</span></td>
             </tr>
             <tr>
                 <td>邮箱：</td>
                 <td>
-                    <input type="text" name="newemail" value="${list.email}" onblur=""/>
+                    <input type="text" name="newemail" value="${findfromuser.email}" onblur=""/>
                 </td>
                 <td><span id="error-newemail">*</span></td>
             </tr>

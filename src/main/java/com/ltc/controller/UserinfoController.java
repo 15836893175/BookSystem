@@ -79,12 +79,12 @@ public class UserinfoController {
         }
     }
     @RequestMapping("/findbyid")
-    public String findidPage(Integer ids){
+    public Userinfo findidPage(Integer ids,Model model){
         Userinfo findfromuser = userinfoService.findbyid(ids);
         if (findfromuser == null) {
             return null;
         }else {
-            return "yes";
+            return findfromuser;
         }
     }
 }
