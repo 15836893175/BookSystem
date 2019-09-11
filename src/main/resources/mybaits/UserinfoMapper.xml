@@ -32,7 +32,7 @@
         update userinfo set username=#{username},password=#{password},phone=#{phone},email=#{email} where ids=#{ids}
     </update>
     <!--ID查询-->
-    <select id="findbyid" parameterType="Integer">
-        select (username,phone,email) from userinfo where ids=#{ids}
+    <select id="findbyid" parameterType="Integer" resultType="Userinfo">
+        select username,phone,email from userinfo where ids=#{ids}
     </select>
 </mapper>
