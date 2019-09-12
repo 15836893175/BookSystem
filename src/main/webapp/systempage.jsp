@@ -80,9 +80,13 @@
         }
         function byid(ids) {
             $.post(
-                "/findbyid"
+                "/findbyid",
+                {ids:ids},
+                function (finddata) {
+                    alert(finddata)
+                },
+                "text"
             )
-
         }
     </script>
 </head>
@@ -155,25 +159,25 @@
 </table>
 <div id="div2" style="margin:0 auto;border: 1px blue solid; width: 395px;display: none">
     <form>
-        <table>
+        <table><s:forEach items="${findfromuser}" var="list2">
             <tr>
                 <td>账号：</td>
                 <td>
-                    <input type="text" name="newname" value="${findfromuser.username}" onblur=""/>
+                    <input type="text" name="newname" value="${list2.username}" onblur=""/>
                 </td>
                 <td><span id="error-newname">*</span></td>
             </tr>
             <tr>
                 <td>电话：</td>
                 <td>
-                    <input type="text" name="newphone" value="${findfromuser.phone}" onblur=""/>
+                    <input type="text" name="newphone" value="${list2.phone}" onblur=""/>
                 </td>
                 <td><span id="error-newphone">*</span></td>
             </tr>
             <tr>
                 <td>邮箱：</td>
                 <td>
-                    <input type="text" name="newemail" value="${findfromuser.email}" onblur=""/>
+                    <input type="text" name="newemail" value="${list2.email}" onblur=""/>
                 </td>
                 <td><span id="error-newemail">*</span></td>
             </tr>
@@ -183,7 +187,7 @@
                     <input type="button" value="确认修改" onclick="gaiuser()"/>
                 </td>
             </tr>
-        </table>
+            </s:forEach></table>
     </form>
 </div>
 </body>
