@@ -83,7 +83,10 @@
                 "/findbyid",
                 {ids:ids},
                 function (finddata) {
-                    alert(finddata)
+                    var jsonStr=eval("("+finddata+")");
+                    document.getElementById('newname').value=jsonStr.username;
+                    document.getElementById('newphone').value=jsonStr.phone;
+                    document.getElementById('newemail').value=jsonStr.email;
                 },
                 "text"
             )
@@ -159,27 +162,25 @@
 </table>
 <div id="div2" style="margin:0 auto;border: 1px blue solid; width: 395px;display: none">
     <form>
-        <table><s:forEach items="${findfromuser}" var="list2">
-            <td>${list2[status.index]}</td>+${list2.password}+${list2.username}
-        </s:forEach>
+        <table>
             <tr>
                 <td>账号：</td>
                 <td>
-                    <input type="text" name="newname" value="${list2.username}" onblur=""/>
+                    <input type="text" id="newname" onblur=""/>
                 </td>
                 <td><span id="error-newname">*</span></td>
             </tr>
             <tr>
                 <td>电话：</td>
                 <td>
-                    <input type="text" name="newphone" value="${list2.phone}" onblur=""/>
+                    <input type="text" id="newphone" onblur=""/>
                 </td>
                 <td><span id="error-newphone">*</span></td>
             </tr>
             <tr>
                 <td>邮箱：</td>
                 <td>
-                    <input type="text" name="newemail" value="${list2.email}" onblur=""/>
+                    <input type="text" id="newemail" onblur=""/>
                 </td>
                 <td><span id="error-newemail">*</span></td>
             </tr>
