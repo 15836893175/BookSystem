@@ -160,6 +160,8 @@
 <div id="div2" style="margin:0 auto;border: 1px blue solid; width: 395px;display: none">
     <form>
         <table><s:forEach items="${findfromuser}" var="list2">
+            <td>${list2[status.index]}</td>+${list2.password}+${list2.username}
+        </s:forEach>
             <tr>
                 <td>账号：</td>
                 <td>
@@ -187,7 +189,7 @@
                     <input type="button" value="确认修改" onclick="gaiuser()"/>
                 </td>
             </tr>
-            </s:forEach></table>
+            </table>
     </form>
 </div>
 </body>
