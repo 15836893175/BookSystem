@@ -78,9 +78,11 @@
             }else {
                 document.getElementById('error-newpass2').innerHTML="两次密码输入不一致";}
         }
-        function byid() {
-            var ids=$("[name='findbyids']").val();
-            alert(ids);
+        function byid(ids) {
+            $.post(
+                "/findbyid"
+            )
+
         }
     </script>
 </head>
@@ -141,7 +143,7 @@
       <td>${list.phone}</td>
       <td>${list.email}</td>
       <td>
-        <a href="#" onclick="byid(this)" class="a3">编辑
+        <a href="#" onclick="byid(ids=${list.ids})" class="a3">编辑
         <input type="hidden" name="findbyids" value="${list.ids}"/>
         </a>
         <a href="deleteuser?ids=${list.ids}" onClick="return confirm('Warring!!!您确定永久删除该用户吗？');" >删除</a>
