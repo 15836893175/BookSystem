@@ -92,7 +92,6 @@ public class UserinfoController {
     @ResponseBody
     public String upuserPage(Userinfo user){
         int i = userinfoService.upuserlog(user);
-        System.out.println(user);
         if (i==0){
             System.out.println("系统错误！");
             return null;
