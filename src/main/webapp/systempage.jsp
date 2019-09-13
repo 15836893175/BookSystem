@@ -87,6 +87,30 @@
                     document.getElementById('newname').value=jsonStr.username;
                     document.getElementById('newphone').value=jsonStr.phone;
                     document.getElementById('newemail').value=jsonStr.email;
+                    document.getElementById('newids').value=ids;
+                },
+                "text"
+            )
+        }
+        function gaiuser() {
+            var newname=document.getElementById('newname').value;
+            var newphone=document.getElementById('newphone').value;
+            var newemail=document.getElementById('newemail').value;
+            var newids=document.getElementById('newids').value;
+
+            $.post(
+                "/upuser",
+                {username:newname,
+                phone:newphone,
+                email:newemail,
+                ids:newids},
+                function (jsonText) {
+                    if (jsonText.length===0){
+                        alert("修改失败！");
+                    }else {
+                        alert("修改成功，返回首页。。。");
+                        window.location.href='/finduser'
+                    }
                 },
                 "text"
             )
@@ -164,6 +188,7 @@
     <form>
         <table>
             <tr>
+                <input type="hidden" id="newids"/>
                 <td>账号：</td>
                 <td>
                     <input type="text" id="newname" onblur=""/>

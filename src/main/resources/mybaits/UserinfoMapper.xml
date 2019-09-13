@@ -29,7 +29,7 @@
     </delete>
     <!--修改信息-->
     <update id="upuserlog" parameterType="Userinfo" keyProperty="ids">
-        update userinfo set username=#{username},password=#{password},phone=#{phone},email=#{email} where ids=#{ids}
+        update userinfo set username=#{username},phone=#{phone},email=#{email} where ids=#{ids}
     </update>
     <!--ID查询-->
     <select id="findbyid" parameterType="Integer" resultType="Userinfo">
