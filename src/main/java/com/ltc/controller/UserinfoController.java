@@ -17,11 +17,17 @@ public class UserinfoController {
     @Autowired
     private UserinfoService userinfoService;
 
+    /*
+    首页跳转方法
+     */
     @RequestMapping("/")
     public String indexPage(){
         return "login";
     }
 
+    /*
+    登录验证
+     */
     @RequestMapping("/login")
     @ResponseBody
     public String loginUser(Userinfo user, HttpSession session){
@@ -33,6 +39,9 @@ public class UserinfoController {
             return null;
         }
     }
+    /*
+    注册验证
+     */
     @RequestMapping("/zhuce")
     @ResponseBody
     public String zhucePage(Userinfo user){
@@ -42,6 +51,9 @@ public class UserinfoController {
         }
         return null;
     }
+    /*
+    注册验证用户是否存在
+     */
     @RequestMapping("/zhuceuser")
     @ResponseBody
     public String zhuceuserPage(Userinfo user){
@@ -52,12 +64,18 @@ public class UserinfoController {
             return "yes";
         }
     }
+    /*
+    查询方法
+     */
     @RequestMapping("/finduser")
     public String finduserPage(Userinfo user, Model model){
         List<Userinfo> userlist = userinfoService.finduser(user);
         model.addAttribute("userlist",userlist);
         return "systempage";
     }
+    /*
+    修改密码
+     */
     @RequestMapping("/gaimiurl")
     @ResponseBody
     public String gaimiPage(Userinfo user){
@@ -68,6 +86,9 @@ public class UserinfoController {
             return "yes";
         }
     }
+    /*
+    删除方法
+     */
     @RequestMapping("/deleteuser")
     public String deletePage(Integer ids){
         System.out.println("执行删除");
@@ -78,6 +99,9 @@ public class UserinfoController {
             return "forward:/finduser";
         }
     }
+    /*
+    根据ID查询
+     */
     @RequestMapping("/findbyid")
     @ResponseBody
     public Userinfo findidPage(Integer ids){
@@ -88,6 +112,9 @@ public class UserinfoController {
             return findfromuser;
         }
     }
+    /*
+    修改信息
+     */
     @RequestMapping("/upuser")
     @ResponseBody
     public String upuserPage(Userinfo user){
